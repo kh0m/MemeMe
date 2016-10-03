@@ -43,7 +43,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         bottomTextField.textAlignment = NSTextAlignment.center
         topTextField.backgroundColor = UIColor.clear
         bottomTextField.backgroundColor = UIColor.clear
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -128,7 +127,9 @@ extension ViewController: UIImagePickerControllerDelegate {
 extension ViewController: UITextFieldDelegate {
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
+        if textField.text == "TOP" || textField.text == "BOTTOM" {
+            textField.text = ""
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
