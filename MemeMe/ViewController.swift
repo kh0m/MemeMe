@@ -23,7 +23,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         NSStrokeColorAttributeName : UIColor.black,
         NSForegroundColorAttributeName : UIColor.white,
         NSFontAttributeName : UIFont.boldSystemFont(ofSize: CGFloat(40)),
-        NSStrokeWidthAttributeName : NSNumber(value: 3.0)
+        NSStrokeWidthAttributeName : NSNumber(value: -3.0)
     ]
     
     // MARK: Life Cycle
@@ -41,12 +41,52 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         topTextField.textAlignment = NSTextAlignment.center
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.textAlignment = NSTextAlignment.center
+        topTextField.backgroundColor = UIColor.clear
+        bottomTextField.backgroundColor = UIColor.clear
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         // disable cameraButton if there is no camera
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)
+        
+        subscribeToNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unscubscribeFromNotifications()
+    }
+    
+    // MARK: Notification Subscriptions
+    
+    func subscribeToNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func unscubscribeFromNotifications() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    // MARK: Notification Methods
+    
+    func keyboardWillShow(notification: Notification) {
+        if bottomTextField.isFirstResponder {
+            view.frame.origin.y -= getKeyboardHeight(notification)
+        }
+    }
+    
+    func keyboardWillHide(notification: Notification) {
+        view.frame.origin.y = 0
+    }
+    
+    func getKeyboardHeight(_ notification: Notification) -> CGFloat {
+        let keyboardSize = notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+        return keyboardSize.cgRectValue.height
     }
     
     // MARK: Actions
@@ -92,6 +132,7 @@ extension ViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         return true
     }
 }
