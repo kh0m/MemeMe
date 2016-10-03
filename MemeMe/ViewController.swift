@@ -41,8 +41,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         topTextField.textAlignment = NSTextAlignment.center
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.textAlignment = NSTextAlignment.center
-        topTextField.backgroundColor = UIColor.clear
-        bottomTextField.backgroundColor = UIColor.clear
     }
     
     override func viewWillAppear(_ animated: Bool) {
