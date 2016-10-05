@@ -86,6 +86,27 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         return keyboardSize.cgRectValue.height
     }
     
+    // MARK: Private Methods
+    
+    private func save() {
+        let meme = Meme(image: imageView.image!, topText: topTextField.text!, bottomText: bottomTextField.text! , memedImage: generateMemedImage())
+        
+    }
+    
+    private func generateMemedImage() -> UIImage {
+        
+        // TODO: hide tab bar and nav bar
+        
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawHierarchy(in: view.frame, afterScreenUpdates: true)
+        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        // TODO: show tab bar and nav bar
+        
+        return memedImage
+    }
+    
     // MARK: Actions
     
     @IBAction func pickAnImage(_ sender: UIBarButtonItem) {
