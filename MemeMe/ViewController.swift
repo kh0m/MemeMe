@@ -31,11 +31,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         case notFinished, finished
     }
     
+    var memes: [Meme]!
+    
     // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        updateUI(state: .notFinished)
         
         // set textfield delegates
         topTextField.delegate = self
@@ -60,6 +63,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unscubscribeFromNotifications()
+    }
+    
+    // MARK: Actions
+    
+    @IBAction func cancelMeme(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: Notification Subscriptions
@@ -96,6 +105,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     private func save() {
         let meme = Meme(image: imageView.image!, topText: topTextField.text!, bottomText: bottomTextField.text! , memedImage: generateMemedImage())
         
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.memes.append(meme)
     }
     
     private func generateMemedImage() -> UIImage {
@@ -141,7 +152,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         let activityItems = [image]
         let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         activityViewController.completionWithItemsHandler = { activity, success, items, error in
-            self.save()
+            if success == true {
+                self.save()
+            }
         }
         
         present(activityViewController, animated: true, completion: nil)
@@ -156,7 +169,11 @@ extension ViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.image = image
+            if topTextField.text != "TOP" && bottomTextField.text != "BOTTOM" {
+                updateUI(state: .finished)
+            }
         }
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -176,12 +193,19 @@ extension ViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if topTextField.text != "TOP" && bottomTextField.text != "BOTTOM" {
-            updateUI(state: .finished)
-        } else {
-            updateUI(state: .notFinished)
-        }
         textField.resignFirstResponder()
+
+        guard topTextField.text != "TOP", bottomTextField.text != "BOTTOM" else {
+            updateUI(state: .notFinished)
+            return true
+        }
+        
+        guard imageView.image != nil else {
+            updateUI(state: .notFinished)
+            return true
+        }
+        
+        updateUI(state: .finished)
         return true
     }
 }

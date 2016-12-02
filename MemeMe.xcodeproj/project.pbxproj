@@ -13,6 +13,7 @@
 		C556AB1F1D98B21E00285877 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C556AB1D1D98B21E00285877 /* Main.storyboard */; };
 		C556AB211D98B21E00285877 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C556AB201D98B21E00285877 /* Assets.xcassets */; };
 		C556AB241D98B21E00285877 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C556AB221D98B21E00285877 /* LaunchScreen.storyboard */; };
+		C5C97ECA1DF206BA00AB3053 /* SentMemesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C97EC91DF206BA00AB3053 /* SentMemesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C556AB201D98B21E00285877 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C556AB231D98B21E00285877 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C556AB251D98B21E00285877 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5C97EC91DF206BA00AB3053 /* SentMemesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				C556AB191D98B21E00285877 /* AppDelegate.swift */,
 				C556AB1B1D98B21E00285877 /* ViewController.swift */,
+				C5C97EC91DF206BA00AB3053 /* SentMemesTableViewController.swift */,
 				C51AC45B1DA5A1E100C63D3F /* Meme.swift */,
 				C556AB1D1D98B21E00285877 /* Main.storyboard */,
 				C556AB201D98B21E00285877 /* Assets.xcassets */,
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C51AC45C1DA5A1E100C63D3F /* Meme.swift in Sources */,
+				C5C97ECA1DF206BA00AB3053 /* SentMemesTableViewController.swift in Sources */,
 				C556AB1C1D98B21E00285877 /* ViewController.swift in Sources */,
 				C556AB1A1D98B21E00285877 /* AppDelegate.swift in Sources */,
 			);
