@@ -66,13 +66,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="swU-9v-4ma">
-                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="XUU-cz-lTY"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="XUU-cz-lTY">
+                            <connections>
+                                <action selector="share:" destination="BYZ-38-t0r" id="87u-Tm-WdP"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="mNY-J5-M3S"/>
                     </navigationItem>
                     <connections>
                         <outlet property="bottomTextField" destination="lrZ-VZ-yjV" id="ILj-kw-gE0"/>
                         <outlet property="cameraButton" destination="qiP-5B-wFH" id="P9h-eC-UEh"/>
                         <outlet property="imageView" destination="G1y-v1-x9J" id="Kjq-s3-6je"/>
+                        <outlet property="shareButton" destination="XUU-cz-lTY" id="gRr-Dm-lFV"/>
                         <outlet property="topTextField" destination="QYr-Kx-jMI" id="Np4-na-LDd"/>
                     </connections>
                 </viewController>

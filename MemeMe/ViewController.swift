@@ -16,6 +16,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     
     // MARK: Variables
     
@@ -25,6 +26,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         NSFontAttributeName : UIFont.boldSystemFont(ofSize: CGFloat(40)),
         NSStrokeWidthAttributeName : NSNumber(value: -3.0)
     ]
+    
+    enum MemeState {
+        case notFinished, finished
+    }
     
     // MARK: Life Cycle
     
@@ -86,7 +91,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         return keyboardSize.cgRectValue.height
     }
     
-    // MARK: Private Methods
+    // MARK: Methods
     
     private func save() {
         let meme = Meme(image: imageView.image!, topText: topTextField.text!, bottomText: bottomTextField.text! , memedImage: generateMemedImage())
@@ -107,6 +112,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         return memedImage
     }
     
+    fileprivate func updateUI(state: MemeState) {
+        switch state {
+        case .finished: shareButton.isEnabled = true
+        case .notFinished: shareButton.isEnabled = false
+        }
+    }
+    
     // MARK: Actions
     
     @IBAction func pickAnImage(_ sender: UIBarButtonItem) {
@@ -123,6 +135,18 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         present(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func share(_ sender: UIBarButtonItem) {
+        let image = generateMemedImage()
+        
+        let activityItems = [image]
+        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        activityViewController.completionWithItemsHandler = { activity, success, items, error in
+            self.save()
+        }
+        
+        present(activityViewController, animated: true, completion: nil)
+        
+    }
 }
 
 // MARK: UIImagePickerControllerDelegate
@@ -152,6 +176,11 @@ extension ViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if topTextField.text != "TOP" && bottomTextField.text != "BOTTOM" {
+            updateUI(state: .finished)
+        } else {
+            updateUI(state: .notFinished)
+        }
         textField.resignFirstResponder()
         return true
     }
