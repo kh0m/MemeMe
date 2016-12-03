@@ -113,8 +113,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         
         // TODO: hide tab bar and nav bar
         
-        UIGraphicsBeginImageContext(view.frame.size)
-        view.drawHierarchy(in: view.frame, afterScreenUpdates: true)
+        UIGraphicsBeginImageContext(imageView.frame.size)
+        view.drawHierarchy(in: imageView.frame, afterScreenUpdates: true)
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
