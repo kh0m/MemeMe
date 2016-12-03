@@ -11,12 +11,14 @@ import UIKit
 class SentMemesTableViewController: UITableViewController {
     
     // MARK: Variables
-    var memes: [Meme]! {
+    
+    var memes: [Meme] {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.memes
     }
     
     // MARK: Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,6 +27,7 @@ class SentMemesTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         tableView.reloadData()
     }
     
@@ -41,7 +44,7 @@ class SentMemesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "memeCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MemeCell", for: indexPath)
 
         // Configure the cell...
         let meme = memes[indexPath.row]

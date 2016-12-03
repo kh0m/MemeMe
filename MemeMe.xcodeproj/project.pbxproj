@@ -14,6 +14,8 @@
 		C556AB211D98B21E00285877 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C556AB201D98B21E00285877 /* Assets.xcassets */; };
 		C556AB241D98B21E00285877 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C556AB221D98B21E00285877 /* LaunchScreen.storyboard */; };
 		C5C97ECA1DF206BA00AB3053 /* SentMemesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C97EC91DF206BA00AB3053 /* SentMemesTableViewController.swift */; };
+		C5C97ECC1DF325F600AB3053 /* SentMemesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C97ECB1DF325F600AB3053 /* SentMemesCollectionViewController.swift */; };
+		C5C97ECE1DF32ABB00AB3053 /* SentMemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C97ECD1DF32ABB00AB3053 /* SentMemeCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		C556AB231D98B21E00285877 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C556AB251D98B21E00285877 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5C97EC91DF206BA00AB3053 /* SentMemesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesTableViewController.swift; sourceTree = "<group>"; };
+		C5C97ECB1DF325F600AB3053 /* SentMemesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesCollectionViewController.swift; sourceTree = "<group>"; };
+		C5C97ECD1DF32ABB00AB3053 /* SentMemeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemeCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 				C556AB191D98B21E00285877 /* AppDelegate.swift */,
 				C556AB1B1D98B21E00285877 /* ViewController.swift */,
 				C5C97EC91DF206BA00AB3053 /* SentMemesTableViewController.swift */,
+				C5C97ECB1DF325F600AB3053 /* SentMemesCollectionViewController.swift */,
+				C5C97ECD1DF32ABB00AB3053 /* SentMemeCollectionViewCell.swift */,
 				C51AC45B1DA5A1E100C63D3F /* Meme.swift */,
 				C556AB1D1D98B21E00285877 /* Main.storyboard */,
 				C556AB201D98B21E00285877 /* Assets.xcassets */,
@@ -145,7 +151,9 @@
 			files = (
 				C51AC45C1DA5A1E100C63D3F /* Meme.swift in Sources */,
 				C5C97ECA1DF206BA00AB3053 /* SentMemesTableViewController.swift in Sources */,
+				C5C97ECC1DF325F600AB3053 /* SentMemesCollectionViewController.swift in Sources */,
 				C556AB1C1D98B21E00285877 /* ViewController.swift in Sources */,
+				C5C97ECE1DF32ABB00AB3053 /* SentMemeCollectionViewCell.swift in Sources */,
 				C556AB1A1D98B21E00285877 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
