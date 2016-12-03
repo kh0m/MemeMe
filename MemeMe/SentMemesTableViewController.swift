@@ -11,24 +11,23 @@ import UIKit
 class SentMemesTableViewController: UITableViewController {
     
     // MARK: Variables
-    var memes: [Meme]!
+    var memes: [Meme]! {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.memes
+    }
     
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        memes = appDelegate.memes
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -41,15 +40,16 @@ class SentMemesTableViewController: UITableViewController {
         return memes.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "memeCell", for: indexPath)
 
         // Configure the cell...
-
+        let meme = memes[indexPath.row]
+        cell.imageView?.image = meme.memedImage
+        cell.textLabel?.text = "\(meme.topText)...\(meme.bottomText)"
+        
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

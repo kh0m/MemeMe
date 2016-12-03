@@ -31,16 +31,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         case notFinished, finished
     }
     
-    var memes: [Meme]!
     
     // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         updateUI(state: .notFinished)
         
-        // set textfield delegates
+        // set textField delegates
         topTextField.delegate = self
         bottomTextField.delegate = self
         
